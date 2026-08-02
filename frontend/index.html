@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinanceFlow</title>
+    <script>
+      // Apply the dark theme before React even mounts, so Login/Register and
+      // every other page — not just screens inside FinanceProvider — start
+      // dark instead of flashing light first. Defaults to dark for new/
+      // logged-out visitors; respects a saved preference once one exists.
+      (function () {
+        try {
+          var saved = localStorage.getItem('ff_dark_mode');
+          var isDark = saved === null ? true : saved === 'true';
+          document.documentElement.classList.toggle('dark', isDark);
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
